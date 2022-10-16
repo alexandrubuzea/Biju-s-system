@@ -1,0 +1,51 @@
+Copyright 2021 Buzea Alexandru-Mihai-Iulian 321CAb
+
+Homework at IOCLA (Introduction to computer organization and assembly)
+
+Title: Biju's system
+
+    Our character, named Biju managed to broke down his filesystem, after his
+friends advised him to use "sudo deluser sudo" in Linux terminal. But
+unfortunately for them, Biju is determined to get revenge and break his
+friends's filesystems, and for him to create a filesystem of his own.
+    He decides to create a filesystem using his favourite programming language
+(we all love C, don't we?). He wants to implement basic commands which he used
+to write in Linux terminal using C functions, as follows:
+
+    - ls: list all the subdirectories and files in a directory
+    - cd: change directory to a subdirectory or to the parent directory
+    - touch: create a file in the current directory
+    - mkdir: create a directory in the current directory
+    - rmdir: removes a directory with all its content
+    - rm: removes a file
+    - mv (bonus) : change a file/directory name
+    - stop, which is not a Linux terminal command, but it is used by Biju
+      in order to free all the allocated memory (#nomemoryleaks), something
+      like "shutdown -h now"
+
+    We implemented all these functions using two data structures, Dir and File,
+each directory in our filesystem having a set of subdirectories and a set of
+(similar to linked lists). While using these functions, some helper functions
+were created:
+    - my_strdup, which has the same behaviour with strdup function, but we
+      managed to create it because strdup is not a standard C function.
+    - create_dir, a function which creates (performs memory allocation and
+      initialization) a directory.
+    - create_file, a function which creates (performs memory allocation and
+      initialization) a file.
+    - destroy_file, a function which frees all the allocated memory for a
+      file (#nomemoryleaks).
+    - init_filesystem, a function based on create_dir in order to create our
+      root directory (which will be named "home" instead of "/").
+    - destroy_file_chain, a function which frees the allocated memory for a
+      list of file structs (similar to freeing a linked list).
+    - __rmdir and destroy_dir_chain, two recursive functions which are calling
+      each other (together, the two functions manage to destroy a directory
+      all its content).
+    - print_indent, a function which prints four space in addition to every
+      level we have in the tree function.
+    - has_dir and has_file, simple functions which search through the
+      subdirectories of a directory or through its files.
+
+    Using these basic commands, Biju managed to get his revenge and recovered
+his files using his brand new filesystem.
